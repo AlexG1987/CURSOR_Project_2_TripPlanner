@@ -10,8 +10,6 @@ import java.util.List;
 @Entity
 @Table(name = "trips")
 @Data
-@Setter
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Trip {
@@ -35,9 +33,6 @@ public class Trip {
     )
     private List<Place> tripPlaces = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private User user;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "trip_users",
@@ -45,5 +40,8 @@ public class Trip {
             inverseJoinColumns = @JoinColumn(name = "trip_id")
     )
     private List<User> tripUsers = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private User user;
 
 }

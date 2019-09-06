@@ -24,4 +24,7 @@ public class Rate {
     @Column(name = "rate", nullable = false)
     private Double rate;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Trip trip;
+
 }

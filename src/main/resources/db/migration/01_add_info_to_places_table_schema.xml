@@ -1,0 +1,33 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+<changeSet id="4" author="alexander gavrilyuk">
+        <insert tableName="places">
+            <column name="place_name">Acropolis</column>
+            <column name="country">Greece</column>
+			<column name="address">Attica</column>
+        </insert>
+		<insert tableName="places">
+            <column name="place_name">Louvre</column>
+            <column name="country">France</column>
+			<column name="address">75001, Paris</column>
+        </insert>
+		<insert tableName="places">
+            <column name="place_name">Reichstag building</column>
+            <column name="country">Germany</column>
+			<column name="address">Platz der Republik 1, 11011, Berlin</column>
+        </insert>
+		<insert tableName="places">
+            <column name="place_name">Big Ben</column>
+            <column name="country">England</column>
+			<column name="address">Westminster, London SW1A 0AA</column>
+        </insert>
+		<insert tableName="places">
+            <column name="place_name">Hungarian Parliament Building</column>
+            <column name="country">Hungary</column>
+			<column name="address">Budapest, Kossuth Lajos tér 1-3, 1055 </column>
+        </insert>	
+  </changeSet>
+</databaseChangeLog>

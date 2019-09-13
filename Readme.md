@@ -10,58 +10,69 @@ Project IP - http://127.0.0.1:8080/
 
 Methods:
 
-Place Methods:
+Place Methods (/places):
 
-/showAllPlaces - show all places to trip (no parameters);
-
-/showPlacesByCountry - show all trips by different country (String country as parameter);
-
-/showPlacesByTrip - how all trips by different trip (Trip trip as parameter);
-
-Trip Methods:
-
-/showTripsByUser - show all trips by different user (User user as parameter);
-
-/addTrip - add trip (Trip trip as parameter);
+/addPlace - add new place
 Body
 {
-"tripName" : "YourTripName",
-"tripDate" : "2019-09-06"
+"placeName": "YourPlaceName",
+"country": "yourCountry"
 }
 
-/deleteTrip/{id} - delete trip by id (trip id as parameter);
-
-/editTrip/{id} - edit trip (Long oldTripId, Trip newTrip as parameters);
-
-Comment Methods:
-
-/commentPlace - place your comment to Place (Comment comment as parameter);
+/commentPlace - comment place (Place place)
 Body
 {
-"tripName" : "YourTripName",
-"tripDate" : "2019-09-06"
+"tripName": "YourTripName",
+"tripDate": "2019-09-06"
 }
 
-/ratePlace - place your rate to Place (Rate rate as parameter);
+/RatePlace - rate place
 Body
 {
 "date" : "2019-09-06",
-"userName" : "UserCommentName",
-"comment" : "YourStringComment"
+"userName": "UserCommentName",
+"comment": "YourStringComment"
 }
 
-User Methods:
+/showAllPlaces - show all places to trip;
 
-/addUser - add new user (User user as parameter);
+/showPlacesByCountry - show all trips by different country (String country);
+
+/showPlacesByTrip - how all trips by different trip (Long tripId);
+
+
+Trip Methods (/trips):
+
+/addTrip - add trip (Trip trip);
 Body
 {
-"userName" : "YourUserName",
-"email" : "youruseremail@domain.com"
+"tripName": "YourTripName",
+"tripDate": "2019-09-06"
 }
 
-/deleteUser/{id} - delete user by userId (Long id as parameter);
+/deleteTrip/{id} - delete trip by id (Long tripId);
 
-/editUser/{id} - delete user by userId (Long id and User user as parameter).
+/editTrip/{id} - edit trip (Long oldTripId, Trip newTrip);
+
+/addPlaceToTrip (Long userId, Long tripId, Long placeId)
+
+/removePlaceFromTrip (Long userId, Long tripId, Long placeId)
+
+/shareTripWhitOtherUser/user/{userId}/trip/{tripId} - share trip with other users (Long userId, Long tripId)
+
+
+User Methods (/users):
+
+/addUser - add new user (User user);
+Body
+{
+"userName": "YourUserName",
+"email": "youruseremail@domain.com"
+}
+
+/deleteUser/{id} - delete user by userId (Long id);
+
+/editUser/{id} - delete user by userId (Long id, User user).
 
 
 

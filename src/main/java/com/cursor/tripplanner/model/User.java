@@ -1,31 +1,25 @@
 package com.cursor.tripplanner.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private long id;
+    private Long id;
 
     @Column(name = "user_name", nullable = false, unique = true)
     private String userName;
 
-    @Column(name = "email", nullable = false)
-    @Email
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -42,6 +36,5 @@ public class User {
     public void setUsers(List<User> tripUsers) {
         this.tripUsers = tripUsers;
     }
-
 
 }

@@ -3,28 +3,25 @@ package com.cursor.tripplanner.controller;
 import com.cursor.tripplanner.model.Comment;
 import com.cursor.tripplanner.model.Place;
 import com.cursor.tripplanner.model.Rate;
-import com.cursor.tripplanner.model.Trip;
-import com.cursor.tripplanner.service.TripPlannerImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.cursor.tripplanner.service.PlaceServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("places")
 public class PlaceController {
 
-    private final TripPlannerImpl tripPlannerImpl;
-
-    @Autowired
-    public PlaceController(TripPlannerImpl tripPlannerImpl) {
-        this.tripPlannerImpl = tripPlannerImpl;
-    }
+    private final PlaceServiceImpl placeServiceImpl;
 
     @ResponseBody
     @GetMapping("/showAllPlaces")
     public ResponseEntity<List<Place>> showAllPlaces() {
-        tripPlannerImpl.showAllPlaces();
+        placeServiceImpl.showAllPlaces();
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build();
@@ -32,17 +29,17 @@ public class PlaceController {
 
     @ResponseBody
     @GetMapping("/showPlacesByCountry")
-    public ResponseEntity<List<Trip>> showPlacesByCountry(@PathVariable String country) {
-        tripPlannerImpl.showPlacesByCountry(country);
+    public ResponseEntity<List<Place>> showPlacesByCountry(@PathVariable String country) {
+        placeServiceImpl.showPlacesByCountry(country);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build();
     }
 
     @ResponseBody
-    @GetMapping("/showPlacesByTrip")
-    public ResponseEntity<List<Trip>> showPlacesByTrip(@PathVariable Trip trip) {
-        tripPlannerImpl.showPlacesByTrip(trip);
+    @GetMapping("/showPlacesByTrip/{id}")
+    public ResponseEntity<List<Place>> showPlacesByTrip(@PathVariable(name = "id") Long tripId) {
+        placeServiceImpl.showPlacesByTrip(tripId);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build();
@@ -50,7 +47,7 @@ public class PlaceController {
 
     @PostMapping("/commentPlace")
     public ResponseEntity commentPlace(@RequestBody Comment comment) {
-        tripPlannerImpl.commentPlace(comment);
+        placeServiceImpl.commentPlace(comment);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .build();
@@ -58,7 +55,15 @@ public class PlaceController {
 
     @PostMapping("/ratePlace")
     public ResponseEntity ratePlace(@RequestBody Rate rate) {
-        tripPlannerImpl.ratePlace(rate);
+        placeServiceImpl.ratePlace(rate);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .build();
+    }
+
+    @PostMapping("/addPlace")
+    public ResponseEntity addPlace(@RequestBody Place place) {
+        placeServiceImpl.addPlace(place);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .build();

@@ -14,7 +14,7 @@ class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/add")
+    @PostMapping("/")
     public ResponseEntity addUser(@RequestBody User user) {
         userService.addUser(user);
         return ResponseEntity
@@ -22,7 +22,7 @@ class UserController {
                 .build();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteUser(@PathVariable(name = "id") Long userId) {
         userService.deleteUser(userId);
         return ResponseEntity
@@ -30,7 +30,7 @@ class UserController {
                 .build();
     }
 
-    @PatchMapping("/edit/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity editUser(@PathVariable(name = "id") Long oldUserId, @RequestBody User newUser) {
         userService.editUser(oldUserId, newUser);
         return ResponseEntity

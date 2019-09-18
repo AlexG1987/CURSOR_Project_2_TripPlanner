@@ -16,7 +16,7 @@ public interface TripService {
 
     Trip addPlaceToTrip (Long tripId, Long placeId);
 
-    Trip removePlaceFromTrip (Long userId, Long tripId, Long placeId);
+    Trip removePlaceFromTrip(Long userId, Long tripId, Long placeId);
 
     Trip shareTripWhitOtherUser(Long UserId, Long tripId);
 

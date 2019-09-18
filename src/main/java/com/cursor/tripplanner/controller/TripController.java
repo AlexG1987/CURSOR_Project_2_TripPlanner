@@ -17,15 +17,12 @@ public class TripController {
     private final TripServiceImpl tripServiceImpl;
 
     @ResponseBody
-    @GetMapping("/user/{id}")
-    public ResponseEntity<List<Trip>> getTripsByUser(@PathVariable(name = "id") Long userId) {
-        tripServiceImpl.findAllByUserId(userId);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .build();
+    @GetMapping("/{userId}")
+    public List<Trip> getTripsByUser(@PathVariable(name = "userId") Long userId) {
+        return tripServiceImpl.findAllByUserId(userId);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/")
     public ResponseEntity addTrip(@RequestBody Trip trip) {
         tripServiceImpl.addTrip(trip);
         return ResponseEntity
@@ -33,16 +30,16 @@ public class TripController {
                 .build();
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteTrip(@PathVariable(name = "id") Long tripId) {
+    @DeleteMapping("/{tripId}")
+    public ResponseEntity deleteTrip(@PathVariable(name = "tripId") Long tripId) {
         tripServiceImpl.deleteTrip(tripId);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build();
     }
 
-    @PatchMapping("/edit/{id}")
-    public ResponseEntity editTrip(@PathVariable(name = "id") Long oldTripId, @RequestBody Trip newTrip) {
+    @PatchMapping("/{oldTripId}")
+    public ResponseEntity editTrip(@PathVariable(name = "oldTripId") Long oldTripId, @RequestBody Trip newTrip) {
         tripServiceImpl.editTrip(oldTripId, newTrip);
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -50,7 +47,7 @@ public class TripController {
     }
 
     @ResponseBody
-    @PostMapping("/addPlaceToTrip/user/{userId}/trip/{tripId}/place/{placeId}")
+    @PostMapping("/place{tripId}{placeId}")
     public ResponseEntity addPlaceToTrip(@PathVariable(name = "tripId") Long tripId,
                                          @PathVariable(name = "placeId") Long placeId) {
         tripServiceImpl.addPlaceToTrip(tripId, placeId);
@@ -60,7 +57,7 @@ public class TripController {
     }
 
     @ResponseBody
-    @DeleteMapping("deletePlaceFromTrip/user/{userId}/trip/{tripId}/place/{placeId}")
+    @DeleteMapping("/place{userId}{tripId}{placeId}")
     public ResponseEntity deletePlaceFromTrip(
             @PathVariable(name = "userId") Long userId,
             @PathVariable(name = "tripId") Long tripId,
@@ -71,7 +68,7 @@ public class TripController {
                 .build();
     }
 
-    @PostMapping("/shareTripWhitOtherUser/user/{userId}/trip/{tripId}")
+    @PostMapping("/share{userId}{tripId}")
     public ResponseEntity shareTripWhitOtherUser(@PathVariable(name = "userId") Long userId,
                                                  @PathVariable(name = "tripId") Long tripId) {
         tripServiceImpl.shareTripWhitOtherUser(userId, tripId);

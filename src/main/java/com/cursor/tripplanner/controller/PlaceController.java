@@ -20,32 +20,23 @@ public class PlaceController {
 
     @ResponseBody
     @GetMapping("/all")
-    public ResponseEntity<List<Place>> getAllPlaces() {
-        placeServiceImpl.getAllPlaces();
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .build();
+    public List<Place> getAllPlaces() {
+        return placeServiceImpl.getAllPlaces();
     }
 
     @ResponseBody
     @GetMapping("/country")
-    public ResponseEntity<List<Place>> getPlacesByCountry(@PathVariable String country) {
-        placeServiceImpl.getPlacesByCountry(country);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .build();
+    public List<Place> getPlacesByCountry(@PathVariable String country) {
+        return placeServiceImpl.getPlacesByCountry(country);
     }
 
     @ResponseBody
-    @GetMapping("/trip/{id}")
-    public ResponseEntity<List<Place>> showPlacesByTrip(@PathVariable(name = "id") Long tripId) {
-        placeServiceImpl.getPlacesByTrip(tripId);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .build();
+    @GetMapping("/{tripId}")
+    public List<Place> showPlacesByTrip(@PathVariable(name = "tripId") Long tripId) {
+        return placeServiceImpl.getPlacesByTrip(tripId);
     }
 
-    @PutMapping("/commentPlace")
+    @PutMapping("/comment")
     public ResponseEntity commentPlace(@RequestBody Comment comment) {
         placeServiceImpl.commentPlace(comment);
         return ResponseEntity
@@ -53,7 +44,7 @@ public class PlaceController {
                 .build();
     }
 
-    @PostMapping("/ratePlace")
+    @PostMapping("/rate")
     public ResponseEntity ratePlace(@RequestBody Rate rate) {
         placeServiceImpl.ratePlace(rate);
         return ResponseEntity
@@ -61,7 +52,7 @@ public class PlaceController {
                 .build();
     }
 
-    @PostMapping("/addPlace")
+    @PostMapping("/add")
     public ResponseEntity addPlace(@RequestBody Place place) {
         placeServiceImpl.addPlace(place);
         return ResponseEntity

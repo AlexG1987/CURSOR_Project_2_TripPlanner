@@ -10,23 +10,23 @@ Project IP - http://127.0.0.1:8080/
 
 Methods:
 
-Place Methods (/places):
+Place Methods (/place):
 
-/addPlace - add new place
+/ (GET) - add new place
 Body
 {
 "placeName": "YourPlaceName",
 "country": "yourCountry"
 }
 
-/commentPlace - comment place (Place place)
+/comment (PUT) - comment place (Place place)
 Body
 {
 "tripName": "YourTripName",
 "tripDate": "2019-09-06"
 }
 
-/RatePlace - rate place
+/rate (POST - rate place
 Body
 {
 "date" : "2019-09-06",
@@ -34,45 +34,47 @@ Body
 "comment": "YourStringComment"
 }
 
-/showAllPlaces - show all places to trip;
+/all (GET) - show all places to trip;
 
-/showPlacesByCountry - show all trips by different country (String country);
+/country (GET) - show all trips by different country (String country);
 
-/showPlacesByTrip - how all trips by different trip (Long tripId);
+/{tripId} (GET) - how all trips by different trip (Long tripId);
 
 
-Trip Methods (/trips):
+Trip Methods (/trip):
 
-/addTrip - add trip (Trip trip);
+/{userId} (GET) - show all trips by iser ID (Long userId)
+
+/ (POST) - add trip (Trip trip);
 Body
 {
 "tripName": "YourTripName",
 "tripDate": "2019-09-06"
 }
 
-/deleteTrip/{id} - delete trip by id (Long tripId);
+/{id} (DELETE) - delete trip by id (Long tripId);
 
-/editTrip/{id} - edit trip (Long oldTripId, Trip newTrip);
+/{id} (PATCH) - edit trip (Long oldTripId, Trip newTrip);
 
-/addPlaceToTrip (Long userId, Long tripId, Long placeId)
+/place (POST) - add place to trip (Long userId, Long tripId, Long placeId) 
 
-/removePlaceFromTrip (Long userId, Long tripId, Long placeId)
+/place{userId}{tripId}{placeId} (DELETE) - delete place from trip (Long userId, Long tripId, Long placeId)
 
-/shareTripWhitOtherUser/user/{userId}/trip/{tripId} - share trip with other users (Long userId, Long tripId)
+/share{userId}{tripId} (POST) - share trip with other users (Long userId, Long tripId)
 
 
 User Methods (/users):
 
-/addUser - add new user (User user);
+/ (POST) - add new user (User user);
 Body
 {
 "userName": "YourUserName",
 "email": "youruseremail@domain.com"
 }
 
-/deleteUser/{id} - delete user by userId (Long id);
+/{id} (DELETE) - delete user by userId (Long id);
 
-/editUser/{id} - delete user by userId (Long id, User user).
+/{id} (PATCH) - delete user by userId (Long id, User user).
 
 
 

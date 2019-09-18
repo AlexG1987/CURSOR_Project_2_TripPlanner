@@ -11,21 +11,21 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("trips")
+@RequestMapping("trip")
 public class TripController {
 
     private final TripServiceImpl tripServiceImpl;
 
     @ResponseBody
-    @GetMapping("/showTripsByUser/{id}")
-    public ResponseEntity<List<Trip>> showTripsByUser(@PathVariable(name = "id") Long userId) {
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<Trip>> getTripsByUser(@PathVariable(name = "id") Long userId) {
         tripServiceImpl.findAllByUserId(userId);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build();
     }
 
-    @PostMapping("/addTrip")
+    @PostMapping("/add")
     public ResponseEntity addTrip(@RequestBody Trip trip) {
         tripServiceImpl.addTrip(trip);
         return ResponseEntity
@@ -33,7 +33,7 @@ public class TripController {
                 .build();
     }
 
-    @DeleteMapping("/deleteTrip/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteTrip(@PathVariable(name = "id") Long tripId) {
         tripServiceImpl.deleteTrip(tripId);
         return ResponseEntity
@@ -41,7 +41,7 @@ public class TripController {
                 .build();
     }
 
-    @PatchMapping("/editTrip/{id}")
+    @PatchMapping("/edit/{id}")
     public ResponseEntity editTrip(@PathVariable(name = "id") Long oldTripId, @RequestBody Trip newTrip) {
         tripServiceImpl.editTrip(oldTripId, newTrip);
         return ResponseEntity
@@ -51,10 +51,9 @@ public class TripController {
 
     @ResponseBody
     @PostMapping("/addPlaceToTrip/user/{userId}/trip/{tripId}/place/{placeId}")
-    public ResponseEntity addPlaceToTrip(@PathVariable(name = "userId") Long userId,
-                                         @PathVariable(name = "tripId") Long tripId,
+    public ResponseEntity addPlaceToTrip(@PathVariable(name = "tripId") Long tripId,
                                          @PathVariable(name = "placeId") Long placeId) {
-        tripServiceImpl.addPlaceToTrip(userId, tripId, placeId);
+        tripServiceImpl.addPlaceToTrip(tripId, placeId);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build();

@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("users")
+@RequestMapping("user")
 class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/addUser")
+    @PostMapping("/add")
     public ResponseEntity addUser(@RequestBody User user) {
         userService.addUser(user);
         return ResponseEntity
@@ -22,7 +22,7 @@ class UserController {
                 .build();
     }
 
-    @DeleteMapping("/deleteUser/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteUser(@PathVariable(name = "id") Long userId) {
         userService.deleteUser(userId);
         return ResponseEntity
@@ -30,7 +30,7 @@ class UserController {
                 .build();
     }
 
-    @PatchMapping("/editUser/{id}")
+    @PatchMapping("/edit/{id}")
     public ResponseEntity editUser(@PathVariable(name = "id") Long oldUserId, @RequestBody User newUser) {
         userService.editUser(oldUserId, newUser);
         return ResponseEntity

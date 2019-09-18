@@ -13,39 +13,39 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("places")
+@RequestMapping("place")
 public class PlaceController {
 
     private final PlaceServiceImpl placeServiceImpl;
 
     @ResponseBody
-    @GetMapping("/showAllPlaces")
-    public ResponseEntity<List<Place>> showAllPlaces() {
-        placeServiceImpl.showAllPlaces();
+    @GetMapping("/all")
+    public ResponseEntity<List<Place>> getAllPlaces() {
+        placeServiceImpl.getAllPlaces();
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build();
     }
 
     @ResponseBody
-    @GetMapping("/showPlacesByCountry")
-    public ResponseEntity<List<Place>> showPlacesByCountry(@PathVariable String country) {
-        placeServiceImpl.showPlacesByCountry(country);
+    @GetMapping("/country")
+    public ResponseEntity<List<Place>> getPlacesByCountry(@PathVariable String country) {
+        placeServiceImpl.getPlacesByCountry(country);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build();
     }
 
     @ResponseBody
-    @GetMapping("/showPlacesByTrip/{id}")
+    @GetMapping("/trip/{id}")
     public ResponseEntity<List<Place>> showPlacesByTrip(@PathVariable(name = "id") Long tripId) {
-        placeServiceImpl.showPlacesByTrip(tripId);
+        placeServiceImpl.getPlacesByTrip(tripId);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build();
     }
 
-    @PostMapping("/commentPlace")
+    @PutMapping("/commentPlace")
     public ResponseEntity commentPlace(@RequestBody Comment comment) {
         placeServiceImpl.commentPlace(comment);
         return ResponseEntity

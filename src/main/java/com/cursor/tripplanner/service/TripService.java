@@ -14,7 +14,7 @@ public interface TripService {
 
     void editTrip(Long oldTripId, Trip newTrip);
 
-    Trip addPlaceToTrip (Long userId, Long tripId, Long placeId);
+    Trip addPlaceToTrip (Long tripId, Long placeId);
 
     Trip removePlaceFromTrip (Long userId, Long tripId, Long placeId);
 

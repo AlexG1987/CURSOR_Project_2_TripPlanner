@@ -20,17 +20,17 @@ public class PlaceServiceImpl implements PlaceService {
     private final RateRepo rateRepo;
 
     @Override
-    public List<Place> showAllPlaces() {
+    public List<Place> getAllPlaces() {
         return (List<Place>) placeRepo.findAll();
     }
 
     @Override
-    public List<Place> showPlacesByCountry(String country) {
+    public List<Place> getPlacesByCountry(String country) {
         return placeRepo.findAllPlacesByCountry(country);
     }
 
     @Override
-    public List<Place> showPlacesByTrip(Long tripId) {
+    public List<Place> getPlacesByTrip(Long tripId) {
         return null;
     }
 

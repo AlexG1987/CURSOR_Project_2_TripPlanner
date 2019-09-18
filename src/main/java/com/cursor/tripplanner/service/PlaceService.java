@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface PlaceService {
 
-    List<Place> showAllPlaces();
+    List<Place> getAllPlaces();
 
-    List<Place> showPlacesByCountry(String country);
+    List<Place> getPlacesByCountry(String country);
 
-    List<Place> showPlacesByTrip(Long tripId);
+    List<Place> getPlacesByTrip(Long tripId);
 
     void addPlace(Place place);
 

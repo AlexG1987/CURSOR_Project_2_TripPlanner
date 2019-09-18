@@ -47,9 +47,9 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public Trip addPlaceToTrip(Long userId, Long tripId, Long placeId) {
-        Place placeToTrip = placeRepo.findById(placeId).get();
-        Trip editedTrip = tripRepo.findById(tripId).get();
+    public Trip addPlaceToTrip(Long tripId, Long placeId) {
+        Place placeToTrip = placeRepo.findById(placeId).orElseThrow();
+        Trip editedTrip = tripRepo.findById(tripId).orElseThrow();
         editedTrip.addPlace(placeToTrip);
         placeRepo.save(placeToTrip);
         return editedTrip;
@@ -61,6 +61,7 @@ public class TripServiceImpl implements TripService {
         Trip editedTrip = tripRepo.findById(tripId).get();
         editedTrip.removePlace(placeFromTrip);
         placeRepo.save(placeFromTrip);
+        tripRepo.save(editedTrip);
         return editedTrip;
     }
 

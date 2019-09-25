@@ -1,7 +1,7 @@
 package com.cursor.tripplanner.controller;
 
 import com.cursor.tripplanner.model.Trip;
-import com.cursor.tripplanner.service.TripServiceImpl;
+import com.cursor.tripplanner.service.impl.TripServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ public class TripController {
 
     private final TripServiceImpl tripServiceImpl;
 
-    @ResponseBody
+
     @GetMapping("/{userId}")
     public List<Trip> getTripsByUser(@PathVariable(name = "userId") Long userId) {
         return tripServiceImpl.findAllByUserId(userId);
@@ -38,7 +38,7 @@ public class TripController {
                 .build();
     }
 
-    @PatchMapping("/{oldTripId}")
+    @PutMapping("/{oldTripId}")
     public ResponseEntity editTrip(@PathVariable(name = "oldTripId") Long oldTripId, @RequestBody Trip newTrip) {
         tripServiceImpl.editTrip(oldTripId, newTrip);
         return ResponseEntity
@@ -46,7 +46,6 @@ public class TripController {
                 .build();
     }
 
-    @ResponseBody
     @PostMapping("/place{tripId}{placeId}")
     public ResponseEntity addPlaceToTrip(@PathVariable(name = "tripId") Long tripId,
                                          @PathVariable(name = "placeId") Long placeId) {
@@ -56,7 +55,6 @@ public class TripController {
                 .build();
     }
 
-    @ResponseBody
     @DeleteMapping("/place{userId}{tripId}{placeId}")
     public ResponseEntity deletePlaceFromTrip(
             @PathVariable(name = "userId") Long userId,

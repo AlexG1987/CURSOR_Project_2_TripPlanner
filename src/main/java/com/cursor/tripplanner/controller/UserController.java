@@ -30,7 +30,7 @@ class UserController {
                 .build();
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity editUser(@PathVariable(name = "id") Long oldUserId, @RequestBody User newUser) {
         userService.editUser(oldUserId, newUser);
         return ResponseEntity

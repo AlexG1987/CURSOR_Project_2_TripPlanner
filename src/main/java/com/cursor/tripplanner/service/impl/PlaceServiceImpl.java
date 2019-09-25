@@ -1,4 +1,4 @@
-package com.cursor.tripplanner.service;
+package com.cursor.tripplanner.service.impl;
 
 import com.cursor.tripplanner.model.Comment;
 import com.cursor.tripplanner.model.Place;
@@ -6,6 +6,7 @@ import com.cursor.tripplanner.model.Rate;
 import com.cursor.tripplanner.repo.CommentRepo;
 import com.cursor.tripplanner.repo.PlaceRepo;
 import com.cursor.tripplanner.repo.RateRepo;
+import com.cursor.tripplanner.service.PlaceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

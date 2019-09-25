@@ -12,7 +12,7 @@ public interface TripService {
 
     void deleteTrip(Long Id);
 
-    void editTrip(Long oldTripId, Trip newTrip);
+    Trip editTrip(Long oldTripId, Trip newTrip);
 
     Trip addPlaceToTrip (Long tripId, Long placeId);
 

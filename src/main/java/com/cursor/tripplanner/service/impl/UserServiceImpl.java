@@ -1,7 +1,8 @@
-package com.cursor.tripplanner.service;
+package com.cursor.tripplanner.service.impl;
 
 import com.cursor.tripplanner.model.User;
 import com.cursor.tripplanner.repo.UserRepo;
+import com.cursor.tripplanner.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +23,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editUser(Long oldUserId, User newUser) {
+    public User editUser(Long oldUserId, User newUser) {
         if (userRepo.existsById(oldUserId)) {
             userRepo.deleteById(oldUserId);
-            userRepo.save(newUser);
+            User user = new User();
+            user.setId(oldUserId);
+            user.setTrip(newUser.getTrip());
+            user.setEmail(newUser.getEmail());
+            user.setTripUsers(newUser.getTripUsers());
+            user.setUserName(newUser.getUserName());
+            user.setUsers(newUser.getTripUsers());
+            return userRepo.save(user);
         } else {
-            userRepo.save(newUser);
+            return userRepo.save(newUser);
         }
     }
 

@@ -1,4 +1,4 @@
-package com.cursor.tripplanner.service;
+package com.cursor.tripplanner.service.impl;
 
 import com.cursor.tripplanner.exceptions.NotFoundException;
 import com.cursor.tripplanner.model.Place;
@@ -7,6 +7,7 @@ import com.cursor.tripplanner.model.User;
 import com.cursor.tripplanner.repo.PlaceRepo;
 import com.cursor.tripplanner.repo.TripRepo;
 import com.cursor.tripplanner.repo.UserRepo;
+import com.cursor.tripplanner.service.TripService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,12 +38,19 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public void editTrip(Long oldTripId, Trip newTrip) {
+    public Trip editTrip(Long oldTripId, Trip newTrip) {
         if (tripRepo.existsById(oldTripId)) {
             tripRepo.deleteById(oldTripId);
-            tripRepo.save(newTrip);
-        } else {
-            tripRepo.save(newTrip);
+            Trip trip = new Trip();
+            trip.setId(oldTripId);
+            trip.setUser(newTrip.getUser());
+            trip.setTripDate(newTrip.getTripDate());
+            trip.setTripName(newTrip.getTripName());
+            trip.setTripUsers(newTrip.getTripUsers());
+            trip.setTripPlaces(newTrip.getTripPlaces());
+            return tripRepo.save(trip);
+        }else{
+            return tripRepo.save(newTrip);
         }
     }
 
